@@ -104,7 +104,7 @@ It assings the client to the room, broadcasts a `message` event after the promis
 After the event is fired from the client-side, it sends a request to fakeDb to get the user details. After success, it broadcasts the `randomNumber` event to the room, that will be visible for all opponents. Finally, it broadcasts `activateYourTurn` and the first connected user starts to play.
 
 ### **sendNumber**
-It sends the number back to the client with the selected move choice ( 1,0,-1). It broadcasts the `randomNumber` event with the calculated result back and activates the opponent turn with the `activateYourTurn` event. For CPU users this section is automated, please look at the **code line 113**.
+It sends the number back to the client with the selected move choice ( 1,0,-1) and last calculated result of the number. It broadcasts the `randomNumber` event with the calculated result back and activates the opponent turn with the `activateYourTurn` event. For CPU users this section is automated, please look at the **code line 113**.
 
 # Fake DB JsonServer
 It's a server which creates a fake REST API. For more details, please check

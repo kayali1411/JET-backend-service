@@ -1,12 +1,12 @@
 import express from "express";
 import * as http from "http";
-import SocketIO from "socket.io";
+import { Server } from "socket.io";
 
 import APIService from "./api.service";
 
 const port = 8082;
 const server = http.createServer(express);
-const io = SocketIO(server);
+const io = new Server(server);
 const apiService = new APIService();
 
 enum GameState {
@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
   socket.on("joinRoom", ({ username, room, roomType }) => {
     apiService
       .assignRoom(room, socket.id, roomType)
-      .then(() => {
+      .then(async () => {
         socket.emit("message", {
           user: username,
           message: `welcome to room ${room}`,
@@ -48,16 +48,16 @@ io.on("connection", (socket) => {
           });
         }
 
+        // Join room, does not accept callback in v4.6.0
+        await socket.join(room);
         /* Check the room with how many socket is connected */
         const maxRoomSize = roomType === "cpu" ? 1 : 2;
-        socket.join(room, () => {
-          if (
-            io.nsps["/"].adapter.rooms[room] &&
-            io.nsps["/"].adapter.rooms[room]?.length === maxRoomSize
-          ) {
-            io.to(room).emit("onReady", { state: true });
-          }
-        });
+        if (
+          io.of("/").adapter.rooms.has(room) &&
+          io.of("/").adapter.rooms.get(room)?.size === maxRoomSize
+        ) {
+          io.to(room).emit("onReady", { state: true });
+        }
       })
       .catch((err) => {
         socket.emit("error", { message: err });
@@ -74,12 +74,12 @@ io.on("connection", (socket) => {
           isFirst: true,
         });
 
-        socket.broadcast.emit("activateYourTurn", {
-          user: io.nsps["/"].adapter.rooms[result?.data.room]
-            ? Object.keys(
-                io.nsps["/"].adapter.rooms[result?.data.room].sockets
-              )[0]
-            : null,
+        const room = io.of("/").adapter.rooms.get(result?.data.room);
+        const socketId = room ? Array.from(room)[0] : null;
+
+        // emit to room, because there is issue with boradcast emit
+        io.to(result?.data.room).emit("activateYourTurn", {
+          user: socketId || null,
           state: GameState.PLAY,
         });
       })
@@ -114,6 +114,10 @@ io.on("connection", (socket) => {
         // After clients selection it will wait 2 seconds for the CPU selection
 
         setTimeout(() => {
+          // If the result is 1 then game is over, do not send any number by CPU
+          if (lastResult === 1) {
+            return;
+          };
           const setOfRandomNumbers = [1, 0, -1];
           const randomCPU =
             setOfRandomNumbers[
@@ -163,6 +167,17 @@ io.on("connection", (socket) => {
           isOver: true,
         });
       }
+
+
+      // activate the opponent turn
+      const room = io.of("/").adapter.rooms.get(result?.data.room);
+      const arr = room ? Array.from(room) : null;
+      const [user1, user2] = arr ? arr : [null, null];
+
+      io.to(result?.data.room).emit("activateYourTurn", {
+        user: socket.id === user1 ? user2 : user1,
+        state: GameState.PLAY,
+      });
     });
   });
 

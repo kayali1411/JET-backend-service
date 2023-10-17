@@ -13,11 +13,124 @@
       "type": "cpu"
     },
     {
-      "id": "aa0c86fa",
+      "id": "aa0c86fz",
       "name": "Room Amsterdam",
       "owner": "lqcflVIEANZWYkmAAADD",
       "type": "human"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "0DwSZO6t7F8mxdbAAAAD",
+      "name": "ac",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "lRb5Fw07nMUJ0FSrAAAF",
+      "name": "kik",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "alOlpl6D2e3W1I78AAAD",
+      "name": "kik1",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "pbsXiXZPLePk4jFeAAAB",
+      "name": "kk2",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "c8EYvqTTiCMAijo4AAAD",
+      "name": "kk3",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "bIsx1vl4x7M_H_Y3AABb",
+      "name": "dudu",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "O0rFuNhbSUQSPSLPAAAD",
+      "name": "didi",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "7_Ek0XrlweB3h-1AAAAB",
+      "name": "aa",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "HlS5WInWVxDYHHx-AAAD",
+      "name": "qer",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "1kzahyVUkosQXzReAAAJ",
+      "name": "sam",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "1IXGFsyd6Iobyq06AABJ",
+      "name": "nn",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "VV9IUHWozkK1feKgAAAJ",
+      "name": "991",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "IqNcfx3ECdo0Gk9TAABX",
+      "name": "juan",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    },
+    {
+      "id": "xyeucUFzoGau4TkfAAA9",
+      "name": "p1",
+      "room": "Room Amsterdam",
+      "roomType": "human"
+    },
+    {
+      "id": "lGgrR3FEDmYo84MRAAA7",
+      "name": "p2",
+      "room": "Room Amsterdam",
+      "roomType": "human"
+    },
+    {
+      "id": "cfMv8kXetD8sz-afAAAF",
+      "name": "ppp1",
+      "room": "Room Amsterdam",
+      "roomType": "human"
+    },
+    {
+      "id": "rZXjsX1t1_BQjp-AAAAD",
+      "name": "ppp2",
+      "room": "Room Amsterdam",
+      "roomType": "human"
+    },
+    {
+      "id": "x69zfPJPvfmiADATAAAz",
+      "name": "mart",
+      "room": ""
+    },
+    {
+      "id": "PW9VlQ2wXWHfSeZOAAAJ",
+      "name": "ygh",
+      "room": ""
+    }
+  ]
 }
